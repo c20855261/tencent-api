@@ -1,0 +1,18 @@
+version: '3'
+services:
+  tencentcli:
+    image: python:3.9-slim
+    container_name: tccli
+    hostname: tccli
+    restart: always
+    user: root
+    volumes:
+      - ./config:/root/.tccli
+      - ./create-tencent-elb.sh:/root/create-tencent-elb.sh
+    #command: /bin/bash /root/create-tencent-elb.sh
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
